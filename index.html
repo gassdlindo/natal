@@ -313,28 +313,30 @@
                 const data = await response.json();
                 console.log('📍 Dados completos recebidos:', data);
                 
-                // Retorna os dados completos da API
+                // A API retorna location como objeto separado
+                const loc = data.location || data; // fallback se location não existir
+                
                 cachedIpData = {
                     ip: data.ip,
                     location: {
-                        continent_code: data.continent_code,
-                        continent_name: data.continent_name,
-                        country_code2: data.country_code2,
-                        country_code3: data.country_code3,
-                        country_name: data.country_name,
-                        country_name_official: data.country_name_official,
-                        country_capital: data.country_capital,
-                        state_prov: data.state_prov,
-                        state_code: data.state_code,
-                        district: data.district,
-                        city: data.city,
-                        zipcode: data.zipcode,
-                        latitude: data.latitude,
-                        longitude: data.longitude,
-                        is_eu: data.is_eu,
-                        country_flag: data.country_flag,
-                        geoname_id: data.geoname_id,
-                        country_emoji: data.country_emoji
+                        continent_code: loc.continent_code,
+                        continent_name: loc.continent_name,
+                        country_code2: loc.country_code2,
+                        country_code3: loc.country_code3,
+                        country_name: loc.country_name,
+                        country_name_official: loc.country_name_official,
+                        country_capital: loc.country_capital,
+                        state_prov: loc.state_prov,
+                        state_code: loc.state_code,
+                        district: loc.district,
+                        city: loc.city,
+                        zipcode: loc.zipcode,
+                        latitude: loc.latitude,
+                        longitude: loc.longitude,
+                        is_eu: loc.is_eu,
+                        country_flag: loc.country_flag,
+                        geoname_id: loc.geoname_id,
+                        country_emoji: loc.country_emoji
                     },
                     country_metadata: data.country_metadata ? {
                         calling_code: data.country_metadata.calling_code,
