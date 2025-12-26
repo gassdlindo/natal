@@ -313,56 +313,16 @@
                 const data = await response.json();
                 console.log('📍 Dados completos recebidos:', data);
                 
-                // A API retorna location como objeto separado
-                const loc = data.location || data; // fallback se location não existir
-                
+                // A API já retorna location como objeto completo
                 cachedIpData = {
                     ip: data.ip,
-                    location: {
-                        continent_code: loc.continent_code,
-                        continent_name: loc.continent_name,
-                        country_code2: loc.country_code2,
-                        country_code3: loc.country_code3,
-                        country_name: loc.country_name,
-                        country_name_official: loc.country_name_official,
-                        country_capital: loc.country_capital,
-                        state_prov: loc.state_prov,
-                        state_code: loc.state_code,
-                        district: loc.district,
-                        city: loc.city,
-                        zipcode: loc.zipcode,
-                        latitude: loc.latitude,
-                        longitude: loc.longitude,
-                        is_eu: loc.is_eu,
-                        country_flag: loc.country_flag,
-                        geoname_id: loc.geoname_id,
-                        country_emoji: loc.country_emoji
-                    },
-                    country_metadata: data.country_metadata ? {
-                        calling_code: data.country_metadata.calling_code,
-                        tld: data.country_metadata.tld,
-                        languages: data.country_metadata.languages
-                    } : null,
-                    currency: data.currency ? {
-                        code: data.currency.code,
-                        name: data.currency.name,
-                        symbol: data.currency.symbol
-                    } : null,
-                    time_zone: data.time_zone ? {
-                        name: data.time_zone.name,
-                        offset: data.time_zone.offset,
-                        offset_with_dst: data.time_zone.offset_with_dst,
-                        current_time: data.time_zone.current_time,
-                        current_time_unix: data.time_zone.current_time_unix,
-                        is_dst: data.time_zone.is_dst,
-                        dst_savings: data.time_zone.dst_savings,
-                        dst_exists: data.time_zone.dst_exists,
-                        dst_start: data.time_zone.dst_start,
-                        dst_end: data.time_zone.dst_end
-                    } : null,
-                    isp: data.isp,
-                    organization: data.organization,
-                    connection_type: data.connection_type,
+                    location: data.location || {},
+                    country_metadata: data.country_metadata || null,
+                    currency: data.currency || null,
+                    time_zone: data.time_zone || null,
+                    isp: data.isp || null,
+                    organization: data.organization || null,
+                    connection_type: data.connection_type || null,
                     source: 'ipgeolocation.io'
                 };
                 
